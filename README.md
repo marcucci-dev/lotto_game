@@ -4,7 +4,7 @@ For each ticket you will be asked for the type of bill (ambata, ambo, terno, qua
 Numbers will be randomly generated in the range 1-90 (inclusive)
 
 ## Quick start
-To launch the program, after downloading the sources, simply type from the command line:
+To launch the program, after downloading the sources, simply type from the command line:  
 ```python .\lotto_game.py```
 
 ## Design
