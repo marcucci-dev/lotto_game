@@ -29,12 +29,12 @@ def select_num_of_bills():
 
 def select_bill_type():
     suffix = ""
-    for j in range(len(bill.Bill.type_names)):
-        suffix += "\n\t" + str(j) + ": " + bill.Bill.type_names[j] + " "
+    for j in range(len(lotto.bill.Bill.type_names)):
+        suffix += "\n\t" + str(j) + ": " + lotto.bill.Bill.type_names[j] + " "
     prompt = "Choose the type of bill:" + suffix + "\n"
 
-    range_ = range(len(bill.Bill.type_names))
-    return check_input(prompt, range_, 0, len(bill.Bill.type_names) - 1)
+    range_ = range(len(lotto.bill.Bill.type_names))
+    return check_input(prompt, range_, 0, len(lotto.bill.Bill.type_names) - 1)
 
 
 def select_amount_of_numbers():
@@ -45,12 +45,12 @@ def select_amount_of_numbers():
 
 def select_bill_city():
     suffix = ""
-    for j in range(len(bill.Bill.city_names)):
-        suffix += "\n\t" + str(j) + ": " + bill.Bill.city_names[j] + " "
+    for j in range(len(lotto.bill.Bill.city_names)):
+        suffix += "\n\t" + str(j) + ": " + lotto.bill.Bill.city_names[j] + " "
     prompt = "Choose the \"city\" (aka \"ruota\") of the bill: " + suffix + "\n"
 
-    range_ = range(len(bill.Bill.city_names))
-    return check_input(prompt, range_, 0, len(bill.Bill.city_names) - 1)
+    range_ = range(len(lotto.bill.Bill.city_names))
+    return check_input(prompt, range_, 0, len(lotto.bill.Bill.city_names) - 1)
 
 
 if __name__ == '__main__':
@@ -67,7 +67,7 @@ if __name__ == '__main__':
             amount_of_numbers = select_amount_of_numbers()
             city = select_bill_city()
 
-            a_bill = bill.Bill(bill_type, amount_of_numbers, city)
+            a_bill = lotto.bill.Bill(bill_type, amount_of_numbers, city)
             bill_list.append(a_bill)
 
         for bill in bill_list:
