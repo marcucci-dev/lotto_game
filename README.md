@@ -6,3 +6,6 @@ Numbers will be randomly generated in the range 1-90 (inclusive)
 ## Quick start
 To launch the program, after downloading the sources, simply type from the command line:
 ```python .\lotto_game.py```
+
+## Design
+![Alt text](./lottoDiagram.png?raw=true "Class diagram")
