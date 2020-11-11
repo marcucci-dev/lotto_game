@@ -8,4 +8,4 @@ To launch the program, after downloading the sources, simply type from the comma
 ```python .\lotto_game.py```
 
 ## Design
-![Alt text](./lottoDiagram.png?raw=true "Class diagram")
+![Alt text](./LottoDiagram.png?raw=true "Class diagram")
