@@ -1,4 +1,4 @@
-import bill
+import lotto.bill
 
 
 def check_input(prompt, range_, min_, max_):
