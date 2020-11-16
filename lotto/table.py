@@ -1,4 +1,4 @@
-class TableLayout:
+class Table:
     """Represents the graphical layout of a generic table.
 
     attributes: fields_names: list of string
@@ -54,5 +54,5 @@ class TableLayout:
 if __name__ == '__main__':
     fields_names = ('Numbers', 'Ruota', 'Type')
     fields_values = ('11 12 13 14 15 16 17 18 19 20', 'Palermo', 'Quaterna')
-    table_01 = TableLayout(fields_names, fields_values)
+    table_01 = Table(fields_names, fields_values)
     print(table_01)

@@ -1,6 +1,6 @@
 import random
 
-import lotto.table
+from lotto.table import Table
 
 
 class Bill:
@@ -21,7 +21,7 @@ class Bill:
         self.type = bill_type
         self.numbers = self.generate_numbers(amount_of_numbers)
         self.city = city
-        self.table_layout = lotto.table.TableLayout()
+        self.table_layout = Table()
         self.table_layout.set_fields_names(["Numbers", "Ruota", "Type"])
         if self.check_type() and self.check_numbers() and self.check_city():
             self.table_layout.set_fields_values((self.list_number_to_str(), Bill.city_names[self.city],
