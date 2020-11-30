@@ -8,7 +8,7 @@ class LottoView:
     def show_ticket(ticket_, index_=None):
         """Print all attributes of a ticket"""
         city_ = ticket_.city.get_name()
-        bet_type = ticket_.bet_type.get_name()
+        bet_type_ = ticket_.bet_type.get_name()
         numbers = ticket_.numbers
         if index_ is not None:
             print("--- Ticket n°{} ---".format(index_))
@@ -17,7 +17,7 @@ class LottoView:
         print("- City :")
         print("{}".format(city_))
         print("- Bet Type :")
-        print("{}".format(bet_type))
+        print("{}".format(bet_type_))
         print("- Numbers :")
         for n in numbers:
             print(n, end=" ")
