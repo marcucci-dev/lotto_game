@@ -2,12 +2,6 @@ import os
 import sys
 
 # print(sys.path)
-# print("-------------------------------------")
-# del sys.path[0]
-# sys.path.append((os.path.dirname(os.path.realpath(__file__)) ))
-# sys.path.append((os.path.dirname(os.path.realpath(__file__)) , '..'))  # GOOD
-# sys.path.append('C:\\Users\\giuseppe\\PycharmProjects\\lotto_game_Level_01\\lotto_game\\lotto\\')
-print(sys.path)
 
 import random
 
@@ -15,8 +9,7 @@ import random
 
 # Single module: GOOD from PyCharm & from terminal, but alert "Unresolved reference 'Table'" in PyCharm!!!
 # from lotto_game.py: BAD
-from table import Table
-# from . import Table
+# from table import Table
 from city import City
 from bet_type import BetType
 
@@ -25,40 +18,34 @@ class Ticket:
     """Represents a ticket of the lotto game.
 
     Attributes:
-        city: integer 0-10
-        bet_type: integer 0-4
+        city: City object
+        bet_type: BetType object
         numbers: list of int
         # cost: double (not in Learning Path level 1)
-
-        table_layout: object to print the generated tickets with nice ascii art table decoration.
     """
 
-    # type_names = ["ambata", "ambo", "terno", "quaterna", "cinquina"]
-    # city_names = ["Tutte", "Bari", "Cagliari", "Firenze", "Genova",
-    #              "Milano", "Napoli", "Palermo", "Roma", "Torino", "Venezia"]
-
-    def __init__(self, city=City(0), bet_type=BetType(1), amount_of_numbers=10):
+    def __init__(self, city=City(0), bet_type=BetType(0), amount_of_numbers=10):
         self.numbers = self.generate_numbers(amount_of_numbers)
         if self.check_numbers():
             self.city = city
             self.bet_type = bet_type
-            self.table_layout = Table()
+            """ self.table_layout = Table()
             self.table_layout.set_fields_names(["Numbers", "Ruota", "Type"])
-            # if self.check_type() and self.check_numbers() and self.check_city():
             self.table_layout.set_fields_values((self.list_number_to_str(), City.city_allowed[self.city.get()],
                                                  self.bet_type.get_name()))
+            """
         else:
             raise Exception("Sorry, Ticket.__init__ raise an exception")
 
-        self.table_layout.set_fields_widths()
+        # self.table_layout.set_fields_widths()
 
-    def __str__(self):
-        """Returns a human-readable string representation."""
-        """return '{bet_type} of {amount_of_numbers} numbers on {city} ruota: ' \
-               '\n\t{numbers}'.format(bet_type=Ticket.type_names[self.bet_type], city=Ticket.city_names[self.city],
-                                      numbers=self.numbers, amount_of_numbers=len(self.numbers))
-        """
-        return self.table_layout.__str__()
+    # def __str__(self):
+    #    """Returns a human-readable string representation."""
+    #    """return '{bet_type} of {amount_of_numbers} numbers on {city} ruota: ' \
+    #           '\n\t{numbers}'.format(bet_type=Ticket.type_names[self.bet_type], city=Ticket.city_names[self.city],
+    #                                  numbers=self.numbers, amount_of_numbers=len(self.numbers))
+    #    """
+    #    return self.table_layout.__str__()
 
     @staticmethod
     def generate_numbers(amount_of_numbers):
@@ -98,7 +85,7 @@ class Ticket:
                     print("duplicated numbers: ", self.numbers[i], self.numbers[i + 1])
         return numbers_are_valid
 
-    def validate(self):
+    """def validate(self):
         # type_is_valid = self.check_type()
         # city_is_valid = self.check_city()
         numbers_are_valid = self.check_numbers()
@@ -109,6 +96,7 @@ class Ticket:
         for num in self.numbers:
             out += str(num) + " "
         return out
+    """
 
 
 if __name__ == '__main__':
