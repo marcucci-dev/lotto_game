@@ -2,8 +2,7 @@ class City:
     """Represents a city (aka 'ruota') of a ticket.
 
     Attributes:
-        city: str ?
-        city: int
+        __city: int     is a index for city_allowed list
     """
     city_allowed = ["Tutte", "Bari", "Cagliari", "Firenze", "Genova",
                     "Milano", "Napoli", "Palermo", "Roma", "Torino", "Venezia"]
@@ -11,7 +10,7 @@ class City:
     def __init__(self, city=0):
         """Initialize the value of a new city. If city parameter is not specified,
         then the value defaults to 0 (Tutte)."""
-        self.set(city)
+        self.__set(city)
         pass
         '''if city in City.city_allowed:
             self.city = city
@@ -19,12 +18,12 @@ class City:
             raise ValueError(city+' is not a correct value')
         '''
 
-    def set(self, city):
+    def __set(self, city):
         if city in range(len(City.city_allowed)):
             self.__city = city
         else:
             # raise TypeError
-            raise ValueError(f'The value {city} is out of range {0}..{len(City.city_allowed) - 1}')
+            raise ValueError(f'The value {city} is out of range {City.get_min_index()}..{City.get_max_index()}')
 
         """try:
             # City(city_name)
@@ -39,30 +38,33 @@ class City:
     def get_name(self):
         return City.city_allowed[self.__city]
 
+    @staticmethod
+    def get_max_index():
+        return len(City.city_allowed) - 1
+
+    @staticmethod
+    def get_min_index():
+        return 0
+
 
 def test():
-    # city_01 = City("Roma")
-    # city_02 = City("Roma")
-    # city_02.set("Roma")
-    city_03 = City()
-    city_03.set(1)
-    print("City value = ", city_03.get())
-    print("City name = ", city_03.get_name())
 
-    """city_name = "Bologna"
+    for i in range(City.get_max_index()+1):
+        city_01 = City(i)
+        assert city_01.get_name() == City.city_allowed[city_01.get()]
+        print("City value = ", city_01.get())
+        print("City name = ", city_01.get_name())
+
+    city_02 = City()
+    print("City value =", city_02.get())
+    print("City name =", city_02.get_name())
+
     try:
-        city_01 = City(city_name)
-    except ValueError as ve:
-        print(f'You entered {city_name}, which is not a correct value. \nCity allowed are {City.city_allowed}')
-    try:
-        city_02 = City("Tutte")
+        assert False
+        city_03 = City(12)
+        assert False
     except:
-        print("error")
-    try:
-        city_03 = City("Venezia")
-    except:
-        print("error")
-    """
+        assert True
 
 
 if __name__ == '__main__':
