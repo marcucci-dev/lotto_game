@@ -59,13 +59,6 @@ def test():
     print("City value =", city_02.get())
     print("City name =", city_02.get_name())
 
-    try:
-        assert False
-        city_03 = City(12)
-        assert False
-    except:
-        assert True
-
 
 if __name__ == '__main__':
     test()
