@@ -1,7 +1,7 @@
-'''from lotto.city import City
-from lotto.bet_type import BetType
-from lotto.ticket import Ticket
-'''
+# from lotto.city import City
+# from lotto.bet_type import BetType
+# from lotto.ticket import Ticket
+
 from lotto.lotto_controller import LottoController
 from lotto.lotto_view import LottoView
 
