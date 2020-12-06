@@ -16,8 +16,9 @@ from bet_type import BetType
 
 class Ticket:
     """Represents a ticket of the lotto game.
-
-    Attributes:
+    ...
+    Attributes
+    ----------
         city: City object
         bet_type: BetType object
         numbers: list of int
@@ -29,15 +30,9 @@ class Ticket:
         if self.check_numbers():
             self.city = city
             self.bet_type = bet_type
-            """ self.table_layout = Table()
-            self.table_layout.set_fields_names(["Numbers", "Ruota", "Type"])
-            self.table_layout.set_fields_values((self.list_number_to_str(), City.city_allowed[self.city.get()],
-                                                 self.bet_type.get_name()))
-            """
+
         else:
             raise Exception("Sorry, Ticket.__init__ raise an exception")
-
-        # self.table_layout.set_fields_widths()
 
     # def __str__(self):
     #    """Returns a human-readable string representation."""
@@ -59,19 +54,6 @@ class Ticket:
             del numbers_to_extract[index_drawn]
         return numbers_drawn_list
 
-    '''def check_type(self):
-        is_valid = 0 <= self.bet_type < len(self.type_names)
-        if not is_valid:
-            print("The self.bet_type = {:d} is out of range [0..{:d}]".format(self.bet_type, len(self.type_names) - 1))
-        return is_valid
-    '''
-    '''def check_city(self):
-        is_valid = 0 <= self.city < len(self.city_names)
-        if not is_valid:
-            print("The self.city = {:d} is out of range [0..{:d}]".format(self.city, len(self.city_names) - 1))
-        return is_valid
-    '''
-
     def check_numbers(self):
         numbers_are_valid = 1 <= len(self.numbers) <= 10
         if not numbers_are_valid:
@@ -84,19 +66,6 @@ class Ticket:
                 if duplicated_numbers:
                     print("duplicated numbers: ", self.numbers[i], self.numbers[i + 1])
         return numbers_are_valid
-
-    """def validate(self):
-        # type_is_valid = self.check_type()
-        # city_is_valid = self.check_city()
-        numbers_are_valid = self.check_numbers()
-        return numbers_are_valid and city_is_valid  # and type_is_valid
-
-    def list_number_to_str(self):
-        out = ""
-        for num in self.numbers:
-            out += str(num) + " "
-        return out
-    """
 
 
 if __name__ == '__main__':
