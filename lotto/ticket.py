@@ -22,14 +22,16 @@ class Ticket:
         city: City object
         bet_type: BetType object
         numbers: list of int
+        ticket_id: int
         # cost: double (not in Learning Path level 1)
     """
 
-    def __init__(self, city=City(0), bet_type=BetType(0), amount_of_numbers=10):
+    def __init__(self, city=City(0), bet_type=BetType(0), amount_of_numbers=10, ticket_id=1):
         self.numbers = self.generate_numbers(amount_of_numbers)
         if self.check_numbers():
             self.city = city
             self.bet_type = bet_type
+            self.ticket_id = ticket_id
 
         else:
             raise Exception("Sorry, Ticket.__init__ raise an exception")

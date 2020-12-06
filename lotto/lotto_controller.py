@@ -1,7 +1,8 @@
 from city import City
 from bet_type import BetType
 from ticket import Ticket
-
+from extraction import Extraction
+from winning_combination import WinningCombination
 
 class LottoController:
     @staticmethod
@@ -73,14 +74,55 @@ class LottoController:
         return LottoController.check_input(prompt, min_value=min_for_bet_type, max_value=10)
 
     @staticmethod
-    def insert_ticket(ticket_list):
+    def insert_ticket(ticket_list, ticket_id):
         city = LottoController.select_city()
         bet_type = LottoController.select_bet_type()
         amount_of_numbers = LottoController.select_amount_of_numbers(bet_type)
-        a_ticket = Ticket(city=city, bet_type=bet_type, amount_of_numbers=amount_of_numbers)
+        a_ticket = Ticket(city=city, bet_type=bet_type, amount_of_numbers=amount_of_numbers, ticket_id=ticket_id)
         ticket_list.append(a_ticket)
+
+    @staticmethod
+    def create_extraction():
+        return Extraction()
+
+    @staticmethod
+    def check_winning_ticket(ticket, extraction):
+        winning_combinations = list()
+        # for city in ticket.city:
+        if True:
+            city = ticket.city
+            winning_numbers = list()
+            for number in ticket.numbers:
+                if number in extraction.drawn_numbers[city.get_name()]:
+                    winning_numbers.append(number)
+            if len(winning_numbers) >= ticket.bet_type.min_amount_numbers:
+                winning_combination = WinningCombination(city, ticket.bet_type, winning_numbers, 1)
+                winning_combinations.append(winning_combination)
+        return winning_combinations
 
 
 if __name__ == '__main__':
-    bet_type_01 = LottoController.select_bet_type()
-    print(bet_type_01.get_name())
+    # bet_type_01 = LottoController.select_bet_type()
+    # print(bet_type_01.get_name())
+
+    city_01 = City(1)  # manca il caso TUTTE
+    bet_type_01 = BetType(0)
+    amount_of_numbers_01 = 10  # amount_of_numbers
+    t = Ticket(city_01, bet_type_01, amount_of_numbers_01)
+    
+    ex = LottoController.create_extraction()
+
+    w_c = LottoController.check_winning_ticket(t, ex)
+    for w in w_c:
+        print(w)
+
+        print(1, w.city, w.bet_type, w.winning_numbers)
+        print(w.city.get_name())
+        print(w.bet_type.get_name())
+        print(w.winning_numbers)
+        print(w.amount_winning_combinations)
+
+
+
+    
+    
