@@ -31,7 +31,7 @@ class Ticket:
         if self.check_numbers():
             self.city = city
             self.bet_type = bet_type
-            self.ticket_id = ticket_id
+            self.id = ticket_id
 
         else:
             raise Exception("Sorry, Ticket.__init__ raise an exception")

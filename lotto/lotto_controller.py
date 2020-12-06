@@ -96,7 +96,7 @@ class LottoController:
                 if number in extraction.drawn_numbers[city.get_name()]:
                     winning_numbers.append(number)
             if len(winning_numbers) >= ticket.bet_type.min_amount_numbers:
-                winning_combination = WinningCombination(city, ticket.bet_type, winning_numbers, 1)
+                winning_combination = WinningCombination(city, ticket.bet_type, winning_numbers, ticket.id)
                 winning_combinations.append(winning_combination)
         return winning_combinations
 
