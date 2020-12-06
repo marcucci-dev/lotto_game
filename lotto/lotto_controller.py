@@ -52,17 +52,6 @@ class LottoController:
         prompt = "Choose the \"city\" (aka \"ruota\"): " + suffix + "\n"
         city_index = LottoController.check_input(prompt, min_value=City.get_min_index(), max_value=City.get_max_index())
         a_city = City(city_index)
-        """range_ = range(len(City.city_allowed))
-        city_value = LottoController.check_input(prompt, 0, len(City.city_allowed) - 1)
-        city_value = False
-        while not city_value:
-            try:
-                city = City(city_value)
-                # print("city***", city)
-                city_value = True
-            except:
-                city_value = check_input(prompt, 0, len(City.city_allowed) - 1)
-        """
         return a_city
 
     @staticmethod
@@ -81,7 +70,6 @@ class LottoController:
         max_for_bet_type = 10
         prompt = "Choose the amount of numbers to generate (min {} max {} per this bet) \n".format(min_for_bet_type,
                                                                                                    max_for_bet_type)
-        # range_ = range(10)
         return LottoController.check_input(prompt, min_value=min_for_bet_type, max_value=10)
 
     @staticmethod
