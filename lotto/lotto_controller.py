@@ -5,7 +5,21 @@ from ticket import Ticket
 
 class LottoController:
     @staticmethod
-    def check_input(prompt, min_, max_, range_=None):
+    def check_input(prompt, min_value, max_value, range_=None):
+        """Read a string from standard input until an integer value is provided
+        within the bounds min_value and max_value.
+        The prompt string is printed to standard output before reading input.
+        Returns an integer entered by the user between min_value and max_value.
+
+        Args:
+            prompt: string
+            min_value :  int
+            max_value:   int
+            range_:
+
+        Returns:
+            user_input: int
+        """
         while True:
             user_input = input(prompt)
             try:
@@ -16,11 +30,11 @@ class LottoController:
 
             # if user_input not in range_:
             #    print("Input must be in range [{0.start}..{0.stop}).\n".format(range_))
-            # print("min e max", min_, max_)
-            if user_input < min_:
-                print("Input must be greater than or equal to {0}.\n".format(min_))
-            elif user_input > max_:
-                print("Input must be less than or equal to {0}.\n".format(max_))
+            # print("min e max", min_value, max_value)
+            if user_input < min_value:
+                print("Input must be greater than or equal to {0}.\n".format(min_value))
+            elif user_input > max_value:
+                print("Input must be less than or equal to {0}.\n".format(max_value))
             else:
                 return user_input
 
@@ -28,7 +42,7 @@ class LottoController:
     def select_num_of_tickets():
         prompt = "How many tickets do you want to generate (min: 1, max: 5, exit: 0) \n"
         # range_ = range(10)
-        return LottoController.check_input(prompt, min_=0, max_=5)
+        return LottoController.check_input(prompt, min_value=0, max_value=5)
 
     @staticmethod
     def select_city():
@@ -36,7 +50,7 @@ class LottoController:
         for j in range(City.get_max_index()+1):
             suffix += "\n\t" + str(j) + ": " + City.city_allowed[j] + " "
         prompt = "Choose the \"city\" (aka \"ruota\"): " + suffix + "\n"
-        city_index = LottoController.check_input(prompt, min_=City.get_min_index(), max_=City.get_max_index())
+        city_index = LottoController.check_input(prompt, min_value=City.get_min_index(), max_value=City.get_max_index())
         a_city = City(city_index)
         """range_ = range(len(City.city_allowed))
         city_value = LottoController.check_input(prompt, 0, len(City.city_allowed) - 1)
@@ -57,7 +71,7 @@ class LottoController:
         for j in range(BetType.get_max_index()+1):
             suffix += "\n\t" + str(j+1) + ": " + str(BetType.bet_type_allowed[j]) + " "
         prompt = "Choose the type of bet:" + suffix + "\n"
-        bet_type = LottoController.check_input(prompt, min_=BetType.get_min_index()+1, max_=BetType.get_max_index()+1)
+        bet_type = LottoController.check_input(prompt, min_value=BetType.get_min_index() + 1, max_value=BetType.get_max_index() + 1)
         a_bet_type = BetType(bet_type-1)
         return a_bet_type
 
@@ -68,7 +82,7 @@ class LottoController:
         prompt = "Choose the amount of numbers to generate (min {} max {} per this bet) \n".format(min_for_bet_type,
                                                                                                    max_for_bet_type)
         # range_ = range(10)
-        return LottoController.check_input(prompt, min_=min_for_bet_type, max_=10)
+        return LottoController.check_input(prompt, min_value=min_for_bet_type, max_value=10)
 
     @staticmethod
     def insert_ticket(ticket_list):
