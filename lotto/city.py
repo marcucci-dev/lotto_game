@@ -4,13 +4,23 @@ class City:
     Attributes:
         __city: int     is a index for city_allowed list
     """
-    city_allowed = ["Tutte", "Bari", "Cagliari", "Firenze", "Genova",
+    # city_allowed = ["Tutte", "Bari", "Cagliari", "Firenze", "Genova",
+    #                 "Milano", "Napoli", "Palermo", "Roma", "Torino", "Venezia"]
+    city_allowed = ["Bari", "Cagliari", "Firenze", "Genova",
                     "Milano", "Napoli", "Palermo", "Roma", "Torino", "Venezia"]
 
-    def __init__(self, city=0):
+    def __init__(self, all_cities=True, city=0):
         """Initialize the value of a new city. If city parameter is not specified,
         then the value defaults to 0 (Tutte)."""
-        self.__set(city)
+        self.__city = []
+        self.all_cities = all_cities
+        if all_cities:
+            for c in City.city_allowed:
+                self.__city.append(c)
+        else:
+            # print("***city", city)
+            # print("***City.city_allowed[city]", City.city_allowed[city])
+            self.__city.append(City.city_allowed[city])
         pass
         '''if city in City.city_allowed:
             self.city = city
@@ -36,7 +46,8 @@ class City:
         return self.__city
 
     def get_name(self):
-        return City.city_allowed[self.__city]
+        # return City.city_allowed[self.__city]
+        return self.__city
 
     @staticmethod
     def get_max_index():
