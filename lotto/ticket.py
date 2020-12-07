@@ -1,15 +1,6 @@
-import os
-import sys
-
-# print(sys.path)
-
 import random
 
-# from lotto.table import Table  # GOOD from PyCharm, but BAD from terminal!!!
 
-# Single module: GOOD from PyCharm & from terminal, but alert "Unresolved reference 'Table'" in PyCharm!!!
-# from lotto_game.py: BAD
-# from table import Table
 from city import City
 from bet_type import BetType
 
@@ -23,10 +14,10 @@ class Ticket:
         bet_type: BetType object
         numbers: list of int
         ticket_id: int
-        # cost: double (not in Learning Path level 1)
+        cost: double (not in Learning Path level 1)
     """
 
-    def __init__(self, city=City(), bet_type=BetType(), amount_of_numbers=10, numbers=None, ticket_id=1):
+    def __init__(self, city=City(), bet_type=BetType(), amount_of_numbers=10, numbers=None, cost=1.0, ticket_id=1):
         """
         Ticket constructor.
         If the *numbers* argument is not provided, *amount_of_numbers* distinct random numbers are generated.
@@ -36,6 +27,7 @@ class Ticket:
             bet_type:
             amount_of_numbers:
             numbers:
+            cost:
             ticket_id:
         """
         if numbers is None:
@@ -47,6 +39,7 @@ class Ticket:
                 raise Exception("Sorry, wrong numbers argument")
         self.city = city
         self.bet_type = bet_type
+        self.cost = cost
         self.id = ticket_id
 
     # def __str__(self):
@@ -92,15 +85,15 @@ if __name__ == '__main__':
     # make a ticket
     city_01 = City(0)
     bet_type_01 = BetType(1)
-    ticket_01 = Ticket(city=city_01, bet_type=bet_type_01, amount_of_numbers=10)
+    ticket_01 = Ticket(city=city_01, bet_type=bet_type_01, amount_of_numbers=10, cost=2.0)
     print(ticket_01.numbers)
     # assert ticket.validate()
 
-    ticket_02 = Ticket(city=city_01, amount_of_numbers=10)
+    ticket_02 = Ticket(city=city_01, amount_of_numbers=10, cost=2.0)
     print(ticket_02.numbers)
     # assert not ticket_02.validate()
 
-    ticket_03 = Ticket(numbers=[1, 2, 3, 4, 5, 6, 7, 8, 9, 90])
+    ticket_03 = Ticket(numbers=[1, 2, 3, 4, 5, 6, 7, 8, 9, 90], cost=2.0)
     print(ticket_03.numbers)
 
     """ticket_04 = Ticket(4, 0, 10)

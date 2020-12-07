@@ -16,6 +16,8 @@ class LottoView:
         city_ = 'Tutte' if ticket_.city.all_cities else ticket_.city.get_name()
         bet_type_ = ticket_.bet_type.get_name()
         numbers = ticket_.numbers
+        cost = ticket_.cost
+
         if index_ is not None:
             print("--- Ticket n°{} ---".format(index_))
         else:
@@ -29,6 +31,7 @@ class LottoView:
         for n in numbers:
             print(n, end=" ")
         print()
+        # print("{:>10} : {:{w}} ".format("Cost", cost, w=width_))
 
     @staticmethod
     def show_extraction(extraction):
