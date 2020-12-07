@@ -2,7 +2,7 @@ from itertools import combinations
 
 
 class WinningCombination:
-    def __init__(self, city, bet_type, winning_numbers, ticket_id):
+    def __init__(self, city, bet_type, winning_numbers, amount_numbers_played, ticket_id):
         """
 
         Args:
@@ -16,3 +16,4 @@ class WinningCombination:
         self.bet_type = bet_type
         self.winning_numbers = winning_numbers
         self.amount_winning_combinations = len(list(combinations(winning_numbers, bet_type.min_amount_numbers)))
+        self.amount_numbers_played = amount_numbers_played
