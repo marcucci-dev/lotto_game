@@ -29,7 +29,6 @@ class LottoView:
         for n in numbers:
             print(n, end=" ")
         print()
-        print()
 
     @staticmethod
     def show_extraction(extraction):
