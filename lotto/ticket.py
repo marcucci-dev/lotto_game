@@ -26,15 +26,28 @@ class Ticket:
         # cost: double (not in Learning Path level 1)
     """
 
-    def __init__(self, city=City(0), bet_type=BetType(0), amount_of_numbers=10, ticket_id=1):
-        self.numbers = self.generate_numbers(amount_of_numbers)
-        if self.check_numbers():
-            self.city = city
-            self.bet_type = bet_type
-            self.id = ticket_id
+    def __init__(self, city=City(), bet_type=BetType(), amount_of_numbers=10, numbers=None, ticket_id=1):
+        """
+        Ticket constructor.
+        If the *numbers* argument is not provided, *amount_of_numbers* distinct random numbers are generated.
 
+        Args:
+            city:
+            bet_type:
+            amount_of_numbers:
+            numbers:
+            ticket_id:
+        """
+        if numbers is None:
+            self.numbers = self.generate_numbers(amount_of_numbers)
         else:
-            raise Exception("Sorry, Ticket.__init__ raise an exception")
+            if self.check_numbers(numbers):
+                self.numbers = numbers
+            else:
+                raise Exception("Sorry, wrong numbers argument")
+        self.city = city
+        self.bet_type = bet_type
+        self.id = ticket_id
 
     # def __str__(self):
     #    """Returns a human-readable string representation."""
@@ -56,17 +69,22 @@ class Ticket:
             del numbers_to_extract[index_drawn]
         return numbers_drawn_list
 
-    def check_numbers(self):
-        numbers_are_valid = 1 <= len(self.numbers) <= 10
+    @staticmethod
+    def check_numbers(numbers):
+        numbers_are_valid = 1 <= len(numbers) <= 10
         if not numbers_are_valid:
-            print("The amount of numbers = {:d} is out of range [1..10]".format(len(self.numbers)))
+            print("The amount of numbers is {:d} and it's out of range [1..10]".format(len(numbers)))
         else:
-            self.numbers.sort()
-            for i in range(len(self.numbers) - 1):
-                duplicated_numbers = self.numbers[i] == self.numbers[i + 1]
-                numbers_are_valid = numbers_are_valid and not duplicated_numbers
-                if duplicated_numbers:
-                    print("duplicated numbers: ", self.numbers[i], self.numbers[i + 1])
+            numbers_are_valid = all(1 <= num <= 90 for num in numbers)
+            if not numbers_are_valid:
+                print("Each number must be between 1 and 90")
+            else:
+                numbers.sort()
+                for i in range(len(numbers) - 1):
+                    duplicated_numbers = numbers[i] == numbers[i + 1]
+                    numbers_are_valid = numbers_are_valid and not duplicated_numbers
+                    if duplicated_numbers:
+                        print("duplicated numbers: ", numbers[i], numbers[i + 1])
         return numbers_are_valid
 
 
@@ -76,16 +94,18 @@ if __name__ == '__main__':
     bet_type_01 = BetType(1)
     ticket_01 = Ticket(city=city_01, bet_type=bet_type_01, amount_of_numbers=10)
     print(ticket_01)
+    print(ticket_01.numbers)
     # assert ticket.validate()
 
     ticket_02 = Ticket(city=city_01, amount_of_numbers=10)
     print(ticket_02)
+    print(ticket_02.numbers)
     # assert not ticket_02.validate()
-    """
-    ticket_03 = Ticket(4, 1, 11)
-    assert not ticket_03.validate()
 
-    ticket_04 = Ticket(4, 0, 10)
+    ticket_03 = Ticket(numbers=[1, 2, 3, 4, 5, 6, 7, 8, 9, 90])
+    print(ticket_03.numbers)
+
+    """ticket_04 = Ticket(4, 0, 10)
     assert not ticket_04.validate()
 
     ticket_05 = Ticket(4, 11, 10)
