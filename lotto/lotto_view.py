@@ -20,16 +20,6 @@ class LottoView:
             print("--- Ticket n°{} ---".format(index_))
         else:
             print("--- Ticket ---".format(index_))
-        """print("- City :")
-        print("{}".format(city_))
-
-        print("- Bet Type :")
-        print("{}".format(bet_type_))
-
-        print("- Numbers :")
-        for n in numbers:
-            print(n, end=" ")
-        print()"""
 
         width_ = 1
         # print("{:>10} : {:{w}} ".format("City", city_, w=width_))

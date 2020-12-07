@@ -93,12 +93,10 @@ if __name__ == '__main__':
     city_01 = City(0)
     bet_type_01 = BetType(1)
     ticket_01 = Ticket(city=city_01, bet_type=bet_type_01, amount_of_numbers=10)
-    print(ticket_01)
     print(ticket_01.numbers)
     # assert ticket.validate()
 
     ticket_02 = Ticket(city=city_01, amount_of_numbers=10)
-    print(ticket_02)
     print(ticket_02.numbers)
     # assert not ticket_02.validate()
 
