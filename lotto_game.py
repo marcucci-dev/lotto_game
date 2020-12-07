@@ -34,7 +34,7 @@ def main():
         for i in range(len(ticket_list)):
             winning = LottoController.check_winning_ticket(ticket_list[i], extraction)
             if len(winning) > 0:
-                print("\n--- Winning: ticket ", i+1)
+                print("\n--- Winning: ticket n°", i+1)
                 winners.append(winning)
                 for w in winning:
                     LottoView.show_winners(w)
