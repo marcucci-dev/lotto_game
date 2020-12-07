@@ -1,15 +1,8 @@
-# from lotto.city import City
-# from lotto.bet_type import BetType
-# from lotto.ticket import Ticket
-
 from lotto.lotto_controller import LottoController
 from lotto.lotto_view import LottoView
 
 
 def main():
-    # c = LottoController(ModelBasic(my_items), View())
-
-    # global ticket
     num_of_tickets = LottoController.select_num_of_tickets()
     if num_of_tickets == 0:
         print("Exit")
