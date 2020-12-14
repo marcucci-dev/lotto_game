@@ -143,11 +143,13 @@ class LottoController:
                     total_prize += w.prize
                 if total_prize > 6000000:
                     total_prize = 6000000
+                # tax on the part exceeding 500 euros
                 if total_prize > 500:
-                    gross_prize = total_prize * .6
+                    gross_prize = 500 + (total_prize - 500) * (1 - 0.08)
                 else:
-                    gross_prize = total_prize * .8
-                winner = Winner(winning_combinations, total_prize, ticket_list[i].id)
+                    gross_prize = total_prize
+                #gross_prize = (total_prize - 500) * (1 - 0.08)
+                winner = Winner(winning_combinations, total_prize, gross_prize, ticket_list[i].id)
                 winners.append(winner)
         return winners
     
@@ -160,8 +162,8 @@ if __name__ == '__main__':
     numbers_ten = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     numbers_five = [1, 2, 3, 4, 5]
     numbers_six = [1, 2, 3, 4, 5, 6]
-    t = Ticket(city_01, bet_type_01, numbers=numbers_five, cost=2, ticket_id=1)
-    t_02 = Ticket(city_02, bet_type_01, numbers=numbers_five, cost=2, ticket_id=2)
+    t = Ticket(city_01, bet_type_01, numbers=numbers_six, cost=1, ticket_id=1)
+    t_02 = Ticket(city_02, bet_type_01, numbers=numbers_six, cost=1, ticket_id=2)
 
 
     # ex = LottoController.create_extraction()

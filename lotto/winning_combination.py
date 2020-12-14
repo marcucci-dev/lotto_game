@@ -36,7 +36,7 @@ class WinningCombination:
 
 
 class Winner:
-    def __init__(self, winning_combinations, total_prize, ticket_id):
+    def __init__(self, winning_combinations, total_prize, gross_prize, ticket_id):
         """
 
         Args:
@@ -45,4 +45,5 @@ class Winner:
         """
         self.ticket_id = ticket_id
         self.total_prize = total_prize
+        self.gross_prize = gross_prize
         self.winning_combinations = winning_combinations

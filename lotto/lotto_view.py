@@ -64,7 +64,9 @@ class LottoView:
                 for comb in w.winning_combinations:
                     LottoView.show_winning_combination(comb)
                 total_prize = w.total_prize
+                gross_prize = w.gross_prize
                 print("Total prize: €", total_prize)
+                print("Gross prize: €", gross_prize)
                 print()
 
 
