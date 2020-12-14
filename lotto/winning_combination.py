@@ -38,9 +38,10 @@ class WinningCombination:
 class Winner:
     def __init__(self, winning_combinations, total_prize, gross_prize, ticket_id):
         """
-
         Args:
             ticket_id
+            total_prize
+            gross_prize
             winning_combinations List[WinningCombination]:
         """
         self.ticket_id = ticket_id

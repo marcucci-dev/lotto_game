@@ -22,7 +22,7 @@ class City:
             # print("***City.city_allowed[city]", City.city_allowed[city])
             self.city.append(City.city_allowed[city])
 
-    #def get(self):
+    # def get(self):
     #    return self.city
 
     def get_name(self):
@@ -36,16 +36,3 @@ class City:
     @staticmethod
     def get_min_index():
         return 0
-
-
-def test():
-
-    for i in range(City.get_max_index()+1):
-        city_01 = City(i)
-        assert city_01.get_name() == City.city_allowed[city_01.get()]
-
-    city_02 = City()
-
-
-if __name__ == '__main__':
-    test()

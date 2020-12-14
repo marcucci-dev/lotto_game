@@ -130,10 +130,11 @@ class LottoController:
                 if number in extraction.drawn_numbers[city]:
                     winning_numbers.append(number)
             if len(winning_numbers) >= ticket.bet_type.min_amount_numbers:
-                amount_winning_combinations = len(list(combinations(winning_numbers, ticket.bet_type.min_amount_numbers)))
+                amount_winning_combinations = len(list(combinations(winning_numbers,
+                                                                    ticket.bet_type.min_amount_numbers)))
                 amount_numbers_played = len(ticket.numbers)
                 prize = prize_for_one[amount_numbers_played][ticket.bet_type.get()] * amount_winning_combinations \
-                                                                                    * cost_for_city # ticket.cost
+                                                                                    * cost_for_city  # ticket.cost
                 winning_combination = WinningCombination(city, ticket.bet_type, winning_numbers,
                                                          amount_winning_combinations, amount_numbers_played,
                                                          prize, ticket.id)
@@ -171,7 +172,6 @@ if __name__ == '__main__':
     numbers_six = [1, 2, 3, 4, 5, 6]
     t = Ticket(city_01, bet_type_01, numbers=numbers_six, cost=1, ticket_id=1)
     t_02 = Ticket(city_02, bet_type_01, numbers=numbers_six, cost=1, ticket_id=2)
-
 
     # ex = LottoController.create_extraction()
     drawn_numbers = {'Bari': [1, 2, 3, 4, 5], 'Cagliari': [6, 7, 8, 9, 10], 'Firenze': [1, 3, 5, 7, 9],

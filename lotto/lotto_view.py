@@ -58,7 +58,7 @@ class LottoView:
               .format(wc.amount_winning_combinations, wc.bet_type.get_name(), wc.winning_numbers,
                       wc.amount_numbers_played, wc.prize))
 
-    # @staticmethod
+    @staticmethod
     def show_winners(winners):
         if len(winners) == 0:
             print("\n# Sorry, no winning tickets...")
@@ -88,5 +88,6 @@ if __name__ == '__main__':
     winning_numbers = [1, 2, 3, 4, 5]
     amount_numbers_played = 10
     ticket_id = 5
-    # LottoView.show_winning_combination(WinningCombination(city, bet_type, winning_numbers, amount_numbers_played, ticket_id))
-    LottoView.show_winners()
+    # LottoView.show_winning_combination(WinningCombination(city, bet_type, winning_numbers, amount_numbers_played,
+    #                                                       ticket_id))
+    # LottoView.show_winners()
