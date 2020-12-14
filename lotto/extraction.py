@@ -11,7 +11,7 @@ class Extraction:
             * the key is a city and
             * the value is a list of 5 distinct integers between 1 and 90
 
-        TBD???__city: int     is a index for city_allowed list
+        TBD???city: int     is a index for city_allowed list
     """
     city_list = ["Bari", "Cagliari", "Firenze", "Genova", "Milano",
                  "Napoli", "Palermo", "Roma", "Torino", "Venezia"]
