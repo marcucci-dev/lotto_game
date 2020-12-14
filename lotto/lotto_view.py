@@ -31,7 +31,8 @@ class LottoView:
         for n in numbers:
             print(n, end=" ")
         print()
-        # print("{:>10} : {:{w}} ".format("Cost", cost, w=width_))
+        print("{:>10} : €{:{w}} ".format("Cost", cost, w=width_))
+        print()
 
     @staticmethod
     def show_extraction(extraction):
@@ -44,13 +45,27 @@ class LottoView:
                   .format(c, d=extraction.drawn_numbers[c], w=3))
 
     @staticmethod
-    def show_winners(winning_combination):
+    def show_winning_combination(winning_combination):
         """Print values of an winning combination"""
         wc = winning_combination
         # print(winning_combination.ticket_id)
         print("city", wc.city)
         print("\t", wc.amount_winning_combinations, wc.bet_type.get_name(),
-              "with", wc.winning_numbers, "on", wc.amount_numbers_played, "numbers played")
+              "with", wc.winning_numbers, "on", wc.amount_numbers_played, "numbers played, prize €", wc.prize)
+
+    # @staticmethod
+    def show_winners(winners):
+        if len(winners) == 0:
+            print("\n# Sorry, no winning tickets...")
+        else:
+            print("\n--- Winning tickets ---")
+            for w in winners:
+                print("ticket n°{}:".format(w.ticket_id))
+                for comb in w.winning_combinations:
+                    LottoView.show_winning_combination(comb)
+                total_prize = w.total_prize
+                print("Total prize: €", total_prize)
+                print()
 
 
 if __name__ == '__main__':
@@ -59,7 +74,7 @@ if __name__ == '__main__':
     # city = City(True)
     bet_type = BetType(4)
     amount_of_numbers = 10
-    t = Ticket(city=city, bet_type=BetType(4), amount_of_numbers=10)
+    t = Ticket(city=city, bet_type=BetType(4), amount_of_numbers=10, cost=2)
     LottoView.show_ticket(t)
 
     LottoView.show_extraction(Extraction())
@@ -68,4 +83,5 @@ if __name__ == '__main__':
     winning_numbers = [1, 2, 3, 4, 5]
     amount_numbers_played = 10
     ticket_id = 5
-    LottoView.show_winners(WinningCombination(city, bet_type, winning_numbers, amount_numbers_played, ticket_id))
+    # LottoView.show_winning_combination(WinningCombination(city, bet_type, winning_numbers, amount_numbers_played, ticket_id))
+    LottoView.show_winners()
