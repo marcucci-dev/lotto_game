@@ -87,26 +87,9 @@ if __name__ == '__main__':
     bet_type_01 = BetType(1)
     ticket_01 = Ticket(city=city_01, bet_type=bet_type_01, amount_of_numbers=10, cost=2.0)
     print(ticket_01.numbers)
-    # assert ticket.validate()
 
     ticket_02 = Ticket(city=city_01, amount_of_numbers=10, cost=2.0)
     print(ticket_02.numbers)
-    # assert not ticket_02.validate()
 
     ticket_03 = Ticket(numbers=[1, 2, 3, 4, 5, 6, 7, 8, 9, 90], cost=2.0)
     print(ticket_03.numbers)
-
-    """ticket_04 = Ticket(4, 0, 10)
-    assert not ticket_04.validate()
-
-    ticket_05 = Ticket(4, 11, 10)
-    assert not ticket_05.validate()
-
-    ticket_06 = Ticket()
-    ticket_06.numbers = [1, 1, 3, 4, 5, 6, 7, 8, 9, 10]
-    assert not ticket_06.validate()
-
-    ticket_07 = Ticket()
-    ticket_07.numbers = [1, 2, 3, 4, 5, 6, 7, 8, 90, 90]
-    assert not ticket_07.validate()
-    """
