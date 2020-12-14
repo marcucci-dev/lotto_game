@@ -1,5 +1,3 @@
-from itertools import combinations
-
 prize_for_one = {1: [11.23],
                  2: [ 5.62, 250.00],
                  3: [ 3.74,  83.33, 4500.00],
@@ -9,7 +7,7 @@ prize_for_one = {1: [11.23],
                  7: [ 1.60,  11.90,  128.57,   3428.57,  285714.29],
                  8: [ 1.40,   8.93,   80.36,   1714.29,  107142.86],
                  9: [ 1.25,   6.94,   53.57,    952.38,   47619.05],
-                 10:[ 1.12,   5.56,   37.50,    571.43,   23809.52]}
+                10: [ 1.12,   5.56,   37.50,    571.43,   23809.52]}
 
 
 class WinningCombination:
@@ -27,11 +25,8 @@ class WinningCombination:
         self.city = city
         self.bet_type = bet_type
         self.winning_numbers = winning_numbers
-        # self.amount_winning_combinations = len(list(combinations(winning_numbers, bet_type.min_amount_numbers)))
         self.amount_winning_combinations = amount_winning_combinations
         self.amount_numbers_played = amount_numbers_played
-
-        # self.prize = prize_for_one[self.amount_numbers_played][self.bet_type.get()] * self.amount_winning_combinations
         self.prize = prize
 
 
