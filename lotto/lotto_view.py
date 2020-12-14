@@ -35,6 +35,11 @@ class LottoView:
         print()
 
     @staticmethod
+    def show_tickets(ticket_list):
+        for ticket in ticket_list:
+            LottoView.show_ticket(ticket, index_=ticket.id)
+
+    @staticmethod
     def show_extraction(extraction):
         """Print values of an extraction"""
         print("--- Extraction ---")

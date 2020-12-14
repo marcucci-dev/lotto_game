@@ -8,16 +8,9 @@ def main():
         print("Exit")
         exit(0)
     else:
-        '''ticket_list = []
-        for i in range(num_of_tickets):
-            print("-----\nTicket number", i + 1)
-            LottoController.insert_ticket(ticket_list, i+1)'''
+        # make tickets
         ticket_list = LottoController.insert_tickets(num_of_tickets)
-
-        # for ticket in ticket_list:
-        for i in range(len(ticket_list)):
-            LottoView.show_ticket(ticket_list[i], i+1)
-            print()
+        LottoView.show_tickets(ticket_list)
 
         # make an extraction
         extraction = LottoController.create_extraction()
