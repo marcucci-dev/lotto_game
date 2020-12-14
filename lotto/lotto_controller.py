@@ -112,10 +112,11 @@ class LottoController:
 
     @staticmethod
     def check_winning_ticket(ticket, extraction):
+        """  Get winning combinations for ticket
+        """
         winning_combinations = list()
         cost_for_city = ticket.cost / len(ticket.city.city)
         for city in ticket.city.get_name():
-            print("$$check_winning_ticket: city: ", city)
             # city = ticket.city
             winning_numbers = list()
             for number in ticket.numbers:

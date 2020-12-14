@@ -48,9 +48,8 @@ class LottoView:
     def show_winning_combination(winning_combination):
         """Print values of an winning combination"""
         wc = winning_combination
-        # print(winning_combination.ticket_id)
         print("city", wc.city)
-        print("\t {} {} with {} on {} numbers played, prize €{:06.2f}"
+        print("\t {} {} with {} on {} numbers played, prize €{: .2f}"
               .format(wc.amount_winning_combinations, wc.bet_type.get_name(), wc.winning_numbers,
                       wc.amount_numbers_played, wc.prize))
 
@@ -64,10 +63,8 @@ class LottoView:
                 print("ticket n°{}:".format(w.ticket_id))
                 for comb in w.winning_combinations:
                     LottoView.show_winning_combination(comb)
-                total_prize = w.total_prize
-                gross_prize = w.gross_prize
-                print("Total prize: €{:06.2f}".format(total_prize))
-                print("Gross prize: €{:06.2f}".format(gross_prize))
+                print("Total prize: €{: .2f}".format(w.total_prize))
+                print("Gross prize: €{: .2f}".format(w.gross_prize))
                 print()
 
 
