@@ -2,7 +2,7 @@ from ticket import Ticket
 from city import City
 from bet_type import BetType
 from extraction import Extraction
-from winning_combination import WinningCombination
+# from winning_combination import WinningCombination
 
 
 class LottoView:
@@ -50,8 +50,9 @@ class LottoView:
         wc = winning_combination
         # print(winning_combination.ticket_id)
         print("city", wc.city)
-        print("\t", wc.amount_winning_combinations, wc.bet_type.get_name(),
-              "with", wc.winning_numbers, "on", wc.amount_numbers_played, "numbers played, prize €", wc.prize)
+        print("\t {} {} with {} on {} numbers played, prize €{:06.2f}"
+              .format(wc.amount_winning_combinations, wc.bet_type.get_name(), wc.winning_numbers,
+                      wc.amount_numbers_played, wc.prize))
 
     # @staticmethod
     def show_winners(winners):
@@ -65,8 +66,8 @@ class LottoView:
                     LottoView.show_winning_combination(comb)
                 total_prize = w.total_prize
                 gross_prize = w.gross_prize
-                print("Total prize: €", total_prize)
-                print("Gross prize: €", gross_prize)
+                print("Total prize: €{:06.2f}".format(total_prize))
+                print("Gross prize: €{:06.2f}".format(gross_prize))
                 print()
 
 

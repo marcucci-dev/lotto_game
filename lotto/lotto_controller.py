@@ -61,9 +61,9 @@ class LottoController:
 
     @staticmethod
     def select_city():
-        suffix = "\n\t0: Tutte "
+        suffix = "\n\t 0: Tutte "
         for j in range(City.get_max_index() + 1):
-            suffix += "\n\t" + str(j + 1) + ": " + City.city_allowed[j] + " "
+            suffix += "\n\t{:=2d}: {} ".format(j+1, City.city_allowed[j])
         prompt = "Choose the \"city\" (aka \"ruota\"): " + suffix + "\n"
         all_cities_value = 0
         city_index = LottoController.check_input(prompt, min_value=all_cities_value, max_value=City.get_max_index() + 1)
@@ -75,7 +75,7 @@ class LottoController:
     def select_bet_type():
         suffix = ""
         for j in range(BetType.get_max_index() + 1):
-            suffix += "\n\t" + str(j + 1) + ": " + str(BetType.bet_type_allowed[j]) + " "
+            suffix += "\n\t{:=2d}: {} ".format(j + 1, BetType.bet_type_allowed[j])
         prompt = "Choose the type of bet:" + suffix + "\n"
         bet_type = LottoController.check_input(prompt, min_value=BetType.get_min_index() + 1,
                                                max_value=BetType.get_max_index() + 1)
@@ -87,7 +87,7 @@ class LottoController:
         min_for_bet_type = bet_type.get() + 1
         max_for_bet_type = 10
         prompt = "Choose the amount of numbers to generate (min {} max {} per this bet): \n".format(min_for_bet_type,
-                                                                                                   max_for_bet_type)
+                                                                                                    max_for_bet_type)
         return LottoController.check_input(prompt, min_value=min_for_bet_type, max_value=10)
 
     @staticmethod
@@ -148,7 +148,6 @@ class LottoController:
                     gross_prize = 500 + (total_prize - 500) * (1 - 0.08)
                 else:
                     gross_prize = total_prize
-                #gross_prize = (total_prize - 500) * (1 - 0.08)
                 winner = Winner(winning_combinations, total_prize, gross_prize, ticket_list[i].id)
                 winners.append(winner)
         return winners
