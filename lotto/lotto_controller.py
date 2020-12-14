@@ -113,7 +113,7 @@ class LottoController:
     @staticmethod
     def check_winning_ticket(ticket, extraction):
         winning_combinations = list()
-        # cost_for_city = ticket.cost / len(ticket.city.)
+        cost_for_city = ticket.cost / len(ticket.city.city)
         for city in ticket.city.get_name():
             print("$$check_winning_ticket: city: ", city)
             # city = ticket.city
@@ -125,7 +125,7 @@ class LottoController:
                 amount_winning_combinations = len(list(combinations(winning_numbers, ticket.bet_type.min_amount_numbers)))
                 amount_numbers_played = len(ticket.numbers)
                 prize = prize_for_one[amount_numbers_played][ticket.bet_type.get()] * amount_winning_combinations \
-                                                                                    * ticket.cost
+                                                                                    * cost_for_city # ticket.cost
                 winning_combination = WinningCombination(city, ticket.bet_type, winning_numbers,
                                                          amount_winning_combinations, amount_numbers_played,
                                                          prize, ticket.id)
@@ -137,12 +137,17 @@ class LottoController:
         winners = []
         for i in range(len(ticket_list)):
             total_prize = 0
-            winning = LottoController.check_winning_ticket(ticket_list[i], extraction)
-            if len(winning) > 0:
-                for w in winning:
-                    # total_prize += w.prize * ticket_list[i].cost
+            winning_combinations = LottoController.check_winning_ticket(ticket_list[i], extraction)
+            if len(winning_combinations) > 0:
+                for w in winning_combinations:
                     total_prize += w.prize
-                winner = Winner(winning, total_prize, ticket_list[i].id)
+                if total_prize > 6000000:
+                    total_prize = 6000000
+                if total_prize > 500:
+                    gross_prize = total_prize * .6
+                else:
+                    gross_prize = total_prize * .8
+                winner = Winner(winning_combinations, total_prize, ticket_list[i].id)
                 winners.append(winner)
         return winners
     
@@ -151,19 +156,24 @@ if __name__ == '__main__':
     city_01 = City(all_cities=True)
     city_02 = City(all_cities=False, city=0)
     bet_type_01 = BetType(4)
-    amount_of_numbers_01 = 10  # amount_of_numbers
+    # amount_of_numbers_01 = 10  # amount_of_numbers
     numbers_ten = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     numbers_five = [1, 2, 3, 4, 5]
-    t = Ticket(city_01, bet_type_01, amount_of_numbers_01, numbers_ten, cost=2, ticket_id=1)
-    t_02 = Ticket(city_02, bet_type_01, amount_of_numbers_01, numbers_five, cost=2, ticket_id=2)
+    numbers_six = [1, 2, 3, 4, 5, 6]
+    t = Ticket(city_01, bet_type_01, numbers=numbers_five, cost=2, ticket_id=1)
+    t_02 = Ticket(city_02, bet_type_01, numbers=numbers_five, cost=2, ticket_id=2)
 
 
     # ex = LottoController.create_extraction()
     drawn_numbers = {'Bari': [1, 2, 3, 4, 5], 'Cagliari': [6, 7, 8, 9, 10], 'Firenze': [1, 3, 5, 7, 9],
                      'Genova': [13, 18, 11, 79, 17], 'Milano': [77, 48, 72, 84, 1], 'Napoli': [21, 81, 73, 87, 69],
                      'Palermo': [35, 36, 21, 12, 22], 'Roma': [11, 30, 7, 38, 24], 'Torino': [50, 4, 38, 9, 84],
-                     'Venezia': [2, 4, 6, 8, 10]}
-    ex = Extraction(drawn_numbers_=drawn_numbers)
+                     'Venezia': [10, 11, 12, 13, 14]}
+    drawn_numbers_02 = {'Bari': [1, 2, 3, 4, 5], 'Cagliari': [1, 2, 3, 4, 5], 'Firenze': [1, 2, 3, 4, 5],
+                        'Genova': [1, 2, 3, 4, 5], 'Milano': [1, 2, 3, 4, 5], 'Napoli': [1, 2, 3, 4, 5],
+                        'Palermo': [1, 2, 3, 4, 5], 'Roma': [1, 2, 3, 4, 5], 'Torino': [1, 2, 3, 4, 5],
+                        'Venezia': [1, 2, 3, 4, 5]}
+    ex = Extraction(drawn_numbers_=drawn_numbers_02)
 
     w_c = LottoController.check_winning_ticket(t, ex)
     w_c_02 = LottoController.check_winning_ticket(t_02, ex)
