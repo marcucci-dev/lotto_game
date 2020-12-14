@@ -2,8 +2,9 @@ from city import City
 from bet_type import BetType
 from ticket import Ticket
 from extraction import Extraction
-from winning_combination import WinningCombination, Winner
+from winning_combination import WinningCombination, Winner, prize_for_one
 from lotto_view import LottoView
+from itertools import combinations
 
 
 class LottoController:
@@ -121,9 +122,13 @@ class LottoController:
                 if number in extraction.drawn_numbers[city]:
                     winning_numbers.append(number)
             if len(winning_numbers) >= ticket.bet_type.min_amount_numbers:
-                winning_combination = WinningCombination(city, ticket.bet_type, winning_numbers, len(ticket.numbers),
-                                                         ticket.id)
-                winning_combination.prize *= ticket.cost
+                amount_winning_combinations = len(list(combinations(winning_numbers, ticket.bet_type.min_amount_numbers)))
+                amount_numbers_played = len(ticket.numbers)
+                prize = prize_for_one[amount_numbers_played][ticket.bet_type.get()] * amount_winning_combinations \
+                                                                                    * ticket.cost
+                winning_combination = WinningCombination(city, ticket.bet_type, winning_numbers,
+                                                         amount_winning_combinations, amount_numbers_played,
+                                                         prize, ticket.id)
                 winning_combinations.append(winning_combination)
         return winning_combinations
 
@@ -140,17 +145,6 @@ class LottoController:
                 winner = Winner(winning, total_prize, ticket_list[i].id)
                 winners.append(winner)
         return winners
-
-        # ----------------------------------------------
-        # if len(winning) > 0:
-            # print("\n--- Winning: ticket n°", i+1)
-            # winners.append(winning)
-            # for w in winning:
-                # LottoView.show_winners(w)
-                # total_prize += w.prize * ticket_list[i].cost  # !!!
-            # print("Total prize: €", total_prize)
-        #---------------------------------------------------------------------------------        
-        # return winners
     
     
 if __name__ == '__main__':
