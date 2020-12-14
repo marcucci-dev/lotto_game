@@ -107,6 +107,13 @@ class LottoController:
         ticket_list.append(a_ticket)
 
     @staticmethod
+    def insert_tickets(num_of_tickets):
+        ticket_list = []
+        for i in range(num_of_tickets):
+            LottoController.insert_ticket(ticket_list, i+1)
+        return ticket_list
+
+    @staticmethod
     def create_extraction():
         return Extraction()
 
